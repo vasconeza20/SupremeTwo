@@ -1,0 +1,25 @@
+#include <kipr/botball.h>
+int blue = 0;
+int main()
+{
+    camera_open();
+    enable_servos();
+    int servo_pos = 600;
+        while(1){
+            camera_update();
+            if(get_object_count(blue)>0){
+            int updated_pos = get_object_center_x (blue, 0) * 6.875;
+            set_servo_position(3,updated_pos);
+            msleep(20);
+            printf("updated_pos = %d\n", updated_pos);
+            }
+            else
+            {
+               printf("No Blue Detected\n");
+            }
+        }
+    close_camera();
+    disable_servos();
+    printf("program ended\n");
+    return 0;
+}
