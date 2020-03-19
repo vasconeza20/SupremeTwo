@@ -20,13 +20,13 @@ void right (){ 		            //Right Turn Function Definition
 
 int main()
 {
-		while (digital (r_bump) <= 0){   //Loop that keeps robot moving forwards until right digital bumper is engaged
-			forward(); //Forward Action
-		}
-		ao();
+	while (digital (r_bump) <= 0){   //Loop that keeps robot moving forwards until right digital bumper is engaged
+		forward(); //Forward Action
+	}
+	ao();
 		
-		while (digital (l_bump) <= 0){  //Loop that keeps the robot turning right until left digital bumper is engaged
-			right(); //Right Turn
-		}
-		ao();
+	while (digital (l_bump) <= 0){  //Loop that keeps the robot turning right until left digital bumper is engaged
+		right(); //Right Turn
+	}
+	ao();
 }
