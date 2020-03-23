@@ -1,0 +1,51 @@
+// Created on Thu March 23 2020
+//DECLARE VARIABLES
+int l_motor = 0; 	//Left Motor Port
+int r_motor = 2; 	//Right Motor Port
+int l_bump = 8; 	//Left Bump Sensor Port
+int r_bump = 9; 	//Right Bump Sensor Port
+int l_top = 5; 		//Left Top Hat Sensor Port
+int lowspeed = 10; 	//Low Motor Speed
+int speed = 60; 	//Mid Motor Speed
+int highspeed = 90;	 //High Motor Speed
+int pause = 150;  //Reverse Action Pause
+int longpause = 650; //Turning Pause
+int target = 200; //Top Hat Sensor Target
+
+
+//Funtion Definitions//
+void forward (){ 	            //Forward Function Definition
+	motor(l_motor,speed);
+	motor(r_motor,speed);
+}
+void right (){ 		            //Right Turn Function Definition
+	motor(l_motor,highspeed);
+	motor(r_motor,speed);
+}
+void left (){ 		            //Left Turn Function Definition
+	motor(l_motor,-speed);
+	motor(r_motor,speed);
+	msleep(longpause);
+}
+void reverse (){ 		    //Reverse Function Definition
+	motor(l_motor,-speed);
+	motor(r_motor,-speed);
+	msleep(pause);
+}
+
+int main()
+{
+	while (analog (l_top) < target){   //Loop that keeps robot moving right until left top hat sensor is engaged
+		right(); //Right Turn Action
+	}
+	ao();
+		
+	while (digital (l_bump) <= 0){  //Loop that keeps the robot turning forward until left digital bumper is engaged
+		forward(); //Forward Turn
+	}
+	
+	ao();  
+	reverse(); //Reverse function that backs robot away from wall
+	ao();
+	left();  	//Left Turn to get robot aligned with final black line
+}
