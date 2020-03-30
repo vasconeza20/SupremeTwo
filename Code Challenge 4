@@ -5,14 +5,14 @@ int r_motor = 2; 	  //Right Motor Port
 int l_bump = 8; 	  //Left Bump Sensor Port
 int r_bump = 9; 	  //Right Bump Sensor Port
 int l_top = 5; 		  //Left Top Hat Sensor Port
-int r_top = 6;      //Right Top Hat Sensor Port
-int lowspeed = 5;   //Low Motor Speed
+int r_top = 6;      	  //Right Top Hat Sensor Port
+int lowspeed = 5;   	  //Low Motor Speed
 int speed = 60; 	  //Mid Motor Speed
 int lspeed = 50; 	  //Mid Motor Speed for Line Follow
-int highspeed = 90;	//High Motor Speed
-int pause = 150;    //Reverse Action Pause
-int longpause = 645;//Turning Pause
-int target = 200;   //Top Hat Sensor Target
+int highspeed = 90;	  //High Motor Speed
+int pause = 150;          //Reverse Action Pause
+int longpause = 645;      //Turning Pause
+int target = 200;         //Top Hat Sensor Target
  
 
 //Function Definitions//
@@ -64,7 +64,7 @@ int main()
 	ao();
 	
 	while (digital (l_bump) <= 0){   //Loop that makes robot follow black line until left digital bumper is engaged
-          if (analog (l_top) < target){  //If statement that makes robot turn right if top hat sensor sees white
+          	if (analog (l_top) < target){  //If statement that makes robot turn right if top hat sensor sees white
                 right2(); //Right Turn Action
             }
         	if (analog(l_top) > target){   //If statement that makes robot turn left if top hat sensor sees black
@@ -76,13 +76,13 @@ int main()
 	 ao();
 	 left();  	//Left Turn to get robot aligned with black line
 	 
-	 	while (analog (l_top) < target){  //Loop that keeps the robot moving forward until left top hat sensor sees black line
+	 while (analog (l_top) < target){  //Loop that keeps the robot moving forward until left top hat sensor sees black line
 		forward(); //Forward Action
 	}
 	ao();
 	 
 	 while (analog (r_top) < target){   //Loop that makes robot follow line until right top hat detects perp. black line
-          if (analog (l_top) < target){  //If statement that makes robot turn right if top hat sensor sees white
+          	if (analog (l_top) < target){  //If statement that makes robot turn right if top hat sensor sees white
                 right2(); //Right Turn Action
             }
         	if (analog(l_top) > target){   //If statement that makes robot turn left if top hat sensor sees black
