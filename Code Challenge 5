@@ -1,0 +1,43 @@
+// Created on Thu April 2 2020
+//DECLARE VARIABLES
+int l_motor = 0; 		 //Left Motor Port
+int r_motor = 2; 		 //Right Motor Port
+int l_sensor = 0;    //Left Range Sensor
+int m_sensor = 1;  	 //MiddleRange Sensor
+int r_sensor = 2;    //Right Range Sensor
+int lowspeed = 25; 	 //Low Motor Speed
+int highspeed = 95;	 //High Motor Speed
+int mtarget = 100; 	 //Middle Range Sensor Target
+int rtarget = 530; 	 //Left Range Sensor Target
+int endtarget = 300; //End Corner Target
+
+
+//Function Definitions//
+void right (){ 		            //Right Turn Function Definition
+	motor(l_motor,highspeed);
+	motor(r_motor,lowspeed);
+}
+void left (){ 		            //Left Turn Function Definition
+	motor(l_motor, lowspeed);
+	motor(r_motor,highspeed);
+}
+
+
+int main()
+{
+	while(analog (m_sensor)  > mtarget){ //Loop that makes robot follow wall on its right side
+            if (analog (r_sensor) < rtarget){ //Statement that makes robot turn left if it's too close to wall
+                left(); //Left Action
+            }
+            if (analog (r_sensor) > rtarget){//Statement that makes robot turn right if it's too far from wall
+                right(); //Right Action
+            }
+			if ((analog (l_sensor) <= endtarget) && (analog (m_sensor) <= endtarget)){ //Statement that stops all action if the robot has arrived at the opposite corner destination
+				  ao();  // Statment that stop all motors
+				  break; //Statement that interrups loop
+            }
+
+    }
+
+}
+
