@@ -1,0 +1,36 @@
+// Created on Mon April 6 2020
+//DECLARE VARIABLES
+
+int l_motor = 0; 	//Left Motor Port
+int r_motor = 2; 	//Right Motor Port
+int pause = 500; 	//Pause Variable
+int highspeed = 70;	//High Motor Speed
+
+
+//Function Definitions//
+void forward(){   //Forward Function
+	motor(l_motor,highspeed);
+	motor(r_motor,highspeed);
+	msleep(pause);
+}
+void reverse(){  //Reverse Function
+	motor(l_motor,-highspeed);
+	motor(r_motor,-highspeed);
+	msleep(pause);
+}
+
+
+int main()
+{
+	int fiveguys; 
+	
+	for (fiveguys = 1; fiveguys <= 12; fiveguys += 2 ) {  //For loop that repeats code six time
+		printf ("FiveGuys is %d \n", fiveguys);   //PrintF that reports changing value of variable
+		
+			forward(); //Forward Action
+			reverse(); //Reverse Action
+		
+	}
+	return 0;
+
+}
